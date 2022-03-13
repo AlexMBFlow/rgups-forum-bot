@@ -95,7 +95,7 @@ instance.get("http://forum.vfrgups.ru/", {
 request(URL, (err, res, body) => {
     if (err) throw err
 
-    fs.writeFile("src/index.html", body, (err) => {
+    fs.writeFile("parcePage/page.html", body, (err) => {
         if (err) throw err
         markup = body
         const $ = cheerio.load(markup, null, false)
