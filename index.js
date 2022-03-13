@@ -78,8 +78,6 @@ const sendData = async (url) => {
     return data
 }
 
-/* console.log(await sendData(URL)) */
-//console.log(new Date().getTime())
 
 instance.get("http://forum.vfrgups.ru/", {
     params: {
@@ -87,7 +85,7 @@ instance.get("http://forum.vfrgups.ru/", {
         sid: config.sid
     }
 }).then(response => {
-    //console.log(response)
+    console.log(response)
 }).catch((err) => {
     console.log(err)
 })
@@ -103,8 +101,7 @@ request(URL, (err, res, body) => {
         const token = $("input[name='form_token']")
         //записываем в конфик наш найденный сид
         config.params.sid = sid
-        //записываем наш токен
+        //записываем наш токен 
         config.body.form_token = token
     })
 })
-
