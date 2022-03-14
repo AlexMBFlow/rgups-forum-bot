@@ -3,7 +3,7 @@ import fs from "fs";
 import request from "request";
 import cheerio from "cheerio"
 import axios from "axios"
-import { PostConfigCreator } from "./configCreator.js"
+
 
 let markup = null
 let URL = "http://forum.vfrgups.ru/";
@@ -39,19 +39,19 @@ const config = {
     }
 }
 
-const postConfig = new PostConfigCreator(
+/* const postConfig = new PostConfigCreator(
     'forum.vfrgups.ru',
     "keep-alive",
     "max-age=0",
     "1",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.174 YaBrowser/22.1.5.810 Yowser/2.5 Safari/537.36",
     "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
-)
+) */
 
 
 
 const instance = axios.create({
-    baseURL: 'http://forum.vfrgups.ru/',
+    baseURL: URL,
     //timeout: 1000,
     headers: {
         'Host': 'forum.vfrgups.ru',
