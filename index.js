@@ -1,15 +1,15 @@
 import fetch from 'node-fetch';
 import fs from "fs";
 import request from "request";
-import cheerio from "cheerio"
-import axios from "axios"
+import cheerio from "cheerio";
+import axios from "axios";
 
-
-let markup = null
+let markup = null;
 let URL = "http://forum.vfrgups.ru/";
 
 //временное решение, чтобы знать, какие поля существуют в принципе и какая структура у объектов с опциями запросов
-//TODO: для каждого запроса сделать свой конфиг,
+//TODO: для каждого запроса сделать свой конфиг
+
 const config = {
     headers: {
         'Host': 'forum.vfrgups.ru',
@@ -39,20 +39,8 @@ const config = {
     }
 }
 
-/* const postConfig = new PostConfigCreator(
-    'forum.vfrgups.ru',
-    "keep-alive",
-    "max-age=0",
-    "1",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.174 YaBrowser/22.1.5.810 Yowser/2.5 Safari/537.36",
-    "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
-) */
-
-
-
 const instance = axios.create({
     baseURL: URL,
-    //timeout: 1000,
     headers: {
         'Host': 'forum.vfrgups.ru',
         "Connection": "keep-alive",
@@ -78,21 +66,43 @@ const sendData = async (url) => {
     return data
 }
 
+//TODO: доуказать верные передаваемые данные для запроса(headers, params, body)
+const firtsRequestGET = (url) => {
+    axios.get(url, {
+        params: {
+            mode: config.mode,
+            sid: config.sid
+        }
+    }).then(response => {
+        console.log(response)
+    }).catch((err) => {
+        console.log(err)
+    })
+}
 
-instance.get("http://forum.vfrgups.ru/", {
-    params: {
-        mode: config.mode,
-        sid: config.sid
-    }
-}).then(response => {
-    console.log(response)
-}).catch((err) => {
-    console.log(err)
-})
+//TODO: доуказать верные передаваемые данные для запроса(headers, params, body)
+const secondRequerstPOST = (url) => {
+    axios.post(url, {
+        userName: config.userName,
+        password: config.password
+    }).then( response => {
+        console.log(response)
+    }).catch( (err) => {
+        console.log(err)
+    })
+}
 
-request(URL, (err, res, body) => {
+//TODO: доуказать верные передаваемые данные для запроса(headers, params, body)
+const thirdRequestGET = (url) => {
+    axios.get(url,{
+        params: {
+            sid: config.sid
+        }
+    })
+}
+
+/* request(URL, (err, res, body) => {
     if (err) throw err
-
     fs.writeFile("parcePage/page.html", body, (err) => {
         if (err) throw err
         markup = body
@@ -104,4 +114,8 @@ request(URL, (err, res, body) => {
         //записываем наш токен 
         config.body.form_token = token
     })
-})
+}) */
+
+firtsRequest(URL)
+secondRequerstPOST(URL)
+thirdRequestGET(URL)
