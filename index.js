@@ -116,6 +116,6 @@ const thirdRequestGET = (url) => {
     })
 }) */
 
-firtsRequest(URL)
+firtsRequestGET(URL)
 secondRequerstPOST(URL)
 thirdRequestGET(URL)
