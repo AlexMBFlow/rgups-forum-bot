@@ -4,6 +4,7 @@ import request from "request";
 import cheerio from "cheerio";
 import axios from "axios";
 
+
 let markup = null;
 let URL = "http://forum.vfrgups.ru/";
 
@@ -116,6 +117,6 @@ const thirdRequestGET = (url) => {
     })
 }) */
 
-firtsRequestGET(URL)
+/* firtsRequestGET(URL)
 secondRequerstPOST(URL)
-thirdRequestGET(URL)
+thirdRequestGET(URL) */
